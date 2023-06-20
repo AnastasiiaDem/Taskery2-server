@@ -75,7 +75,7 @@ export const sendRespond = async (req, res) => {
       
     };
     // @ts-ignore
-    transporter.sendMail(mail_config, (err: Error, data: any) => {
+    transporter.sendMail(mail_config, (err, data) => {
       if (err) {
         return res.status(400).json({message: 'An error has occurred'});
       }
@@ -85,7 +85,7 @@ export const sendRespond = async (req, res) => {
 };
 
 export const getRequests = async (req, res) => {
-  Request.find({}, function (err: Error, data: any) {
+  Request.find({}, function (err, data) {
     
     if (data.length === 0 || err) return res.status(400).json({message: 'There is no any requests'});
     
@@ -101,7 +101,7 @@ export const deleteRequest = async (req, res) => {
   try {
     const result = await Request.findByIdAndDelete(id);
     res.status(200).json({message: 'Request is deleted'});
-  } catch (error: any) {
-    res.status(400).json({error: error});
+  } catch (error) {
+    res.status(400).json({error});
   }
 };

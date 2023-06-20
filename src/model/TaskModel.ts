@@ -1,12 +1,7 @@
+import {STATUS} from "../config/roles";
+
 export {};
 import mongoose, {Schema} from 'mongoose';
-
-enum StatusEnum {
-  'todo' = 'To Do',
-  'inProgress' = 'In Progress',
-  'onReview' = 'On Review',
-  'done' = 'Done'
-}
 
 interface ITask {
   _id: Schema.Types.ObjectId;
@@ -14,7 +9,7 @@ interface ITask {
   projectId: Schema.Types.ObjectId;
   title: string;
   description: string;
-  status: StatusEnum;
+  status: STATUS;
   deadline: string;
 }
 
@@ -24,7 +19,7 @@ export const TaskSchema = new Schema<ITask>({
   projectId: {type: Schema.Types.ObjectId, ref: 'Project', required: true},
   title: {type: String, require: true},
   description: {type: String, required: true},
-  status: {type: String, enum: StatusEnum, required: true},
+  status: {type: String, enum: STATUS, required: true},
   deadline: {type: String, require: true}
 });
 

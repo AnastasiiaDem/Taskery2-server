@@ -15,7 +15,7 @@ const refreshToken = async (req, res) => {
   
   if (!foundUser) return res.status(403).json({error: 'error user not found'});
   
-  jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, (err: Error, data: any) => {
+  jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, (err, data) => {
     if (err || foundUser.email !== data.email) return res.status(403).json({error: 'error' + err});
     
     const email = foundUser.email;

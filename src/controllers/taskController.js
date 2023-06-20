@@ -61,9 +61,9 @@ export const updateTask = async (req, res) => {
   try {
     const result = await Task.findByIdAndUpdate(id, update, {new: true});
     res.status(200).json({message: 'Task is updated'});
-  } catch (error: any) {
+  } catch (error) {
     console.log(error);
-    res.status(400).json({error: error});
+    res.status(400).json({error});
   }
 };
 //видалення завдань з бд
@@ -82,8 +82,8 @@ export const deleteTask = async (req, res) => {
   try {
     const result = await Task.findByIdAndDelete(id);
     res.status(200).json({message: 'Task is deleted'});
-  } catch (error: any) {
-    res.status(400).json({error: error});
+  } catch (error) {
+    res.status(400).json({error});
   }
 };
 //отримання списку усіх завдань з бд
@@ -110,7 +110,7 @@ export const getTasks = async (req, res) => {
     res.status(200).json({tasks: tasks});
   } catch (error) {
     console.log(error);
-    res.status(400).json({error: error});
+    res.status(400).json({error});
   }
 };
 

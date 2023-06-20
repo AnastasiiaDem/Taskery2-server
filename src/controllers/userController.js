@@ -2,7 +2,7 @@ import User from '../model/UserModel';
 import Token from '../model/TokenModel';
 
 export const getAllUsers = (req, res) => {
-  User.find({}, function (err: Error, data: any) {
+  User.find({}, function (err, data) {
     
     if (data.length === 0 || err) return res.status(400).json({message: 'There is no any user'});
     
@@ -68,9 +68,9 @@ export const updateUser = async (req, res) => {
     const result = await User.findByIdAndUpdate(_id, update, {new: true});
     
     res.status(200).json({body: result, message: 'User is updated'});
-  } catch (error: any) {
+  } catch (error) {
     console.log(error);
-    res.status(400).json({error: error});
+    res.status(400).json({error});
   }
 };
 
@@ -93,8 +93,8 @@ export const deleteUser = async (req, res) => {
     const result = await User.findByIdAndDelete(id);
     
     res.status(200).json({message: 'User is deleted'});
-  } catch (error: any) {
+  } catch (error) {
     console.log(error);
-    res.status(400).json({error: error});
+    res.status(400).json({error});
   }
 };

@@ -50,13 +50,13 @@ const loginUser = async (req, res) => {
       {expiresIn: '1d'}
     );
     
-    Token.findOne({userId: foundUser._id}, function (err: Error, token: any) {
+    Token.findOne({userId: foundUser._id}, function (err, token) {
       if (err) return res.status(400).json({error: err});
       
       if (token) {
         token.refreshToken = refreshToken;
         token.requestedTime = Date.now();
-        token.save((err: Error) => {
+        token.save((err) => {
           if (err) return res.status(400).json({error: err});
         });
       }

@@ -15,12 +15,12 @@ const logoutUser = async (req, res) => {
     return res.status(204).json({error: 'No token'});
   }
   
-  Token.findOne({refreshToken: refreshToken}, function (err: Error, token: any) {
+  Token.findOne({refreshToken: refreshToken}, function (err, token) {
     if (err) return res.status(400).json({error: err});
     
     if (token) {
       token.refreshToken = '';
-      token.save((err: Error) => {
+      token.save((err) => {
         if (err) return res.status(400).json({error: err});
       });
     }

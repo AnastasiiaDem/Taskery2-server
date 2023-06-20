@@ -9,7 +9,7 @@ export const sendEmail = async (req, res) => {
   const foundUser = await User.findOne({_id: userId}).exec();
   
   let assignedList = '';
-  let fullUserData: any = {};
+  let fullUserData = {};
   for (const u of project.assignedUsers) {
     fullUserData = await User.findOne({_id: u.id}).exec();
     assignedList += `${fullUserData.firstName} ${fullUserData.lastName} (${fullUserData.email})<br>`;
@@ -214,7 +214,7 @@ export const sendEmail = async (req, res) => {
       // ],
     };
     // @ts-ignore
-    transporter.sendMail(mail_config, (err: Error, data: any) => {
+    transporter.sendMail(mail_config, (err, data) => {
       if (err) {
         return res.status(400).json({message: 'An error has occurred'});
       }

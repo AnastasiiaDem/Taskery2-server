@@ -24,7 +24,7 @@ export const getAIProject = async (req, res) => {
     res.status(200).json(response.data);
   } catch (error) {
     console.log(error);
-    res.status(400).json({error: error});
+    res.status(400).json({error});
   }
 };
 
@@ -51,7 +51,7 @@ export const getAIBudget = async (req, res) => {
     res.status(200).json(response.data);
   } catch (error) {
     console.log(error);
-    res.status(400).json({error: error});
+    res.status(400).json({error});
   }
 };
 
@@ -78,6 +78,6 @@ export const getAITask = async (req, res) => {
     res.status(200).json(response.data);
   } catch (error) {
     console.log(error);
-    res.status(400).json({error: error});
+    res.status(400).json({error});
   }
 };

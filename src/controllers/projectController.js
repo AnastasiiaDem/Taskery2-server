@@ -65,9 +65,9 @@ export const updateProject = async (req, res) => {
   try {
     const result = await Project.findByIdAndUpdate(id, update, {new: true});
     res.status(200).json({message: 'Project is updated'});
-  } catch (error: any) {
+  } catch (error) {
     console.log(error);
-    res.status(400).json({error: error});
+    res.status(400).json({error});
   }
 };
 //видалення проєкту з бд
@@ -86,8 +86,8 @@ export const deleteProject = async (req, res) => {
     const result = await Project.findByIdAndDelete(id);
     const result2 = await Task.deleteMany({projectId: id});
     res.status(200).json({message: 'Project is deleted'});
-  } catch (error: any) {
-    res.status(400).json({error: error});
+  } catch (error) {
+    res.status(400).json({error});
   }
 };
 //отримання списку усіх проєктів з бд
@@ -106,7 +106,7 @@ export const getProjects = async (req, res) => {
     res.status(200).json({projects: projects});
   } catch (error) {
     console.log(error);
-    res.status(400).json({error: error});
+    res.status(400).json({error});
   }
 };
 //отримання даних поточного проєкту з бд
@@ -128,7 +128,7 @@ export const getCurrentProject = async (req, res) => {
     res.status(200).json(project);
   } catch (error) {
     console.log(error);
-    res.status(400).json({error: error});
+    res.status(400).json({error});
   }
 };
 
