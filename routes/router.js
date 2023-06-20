@@ -4,15 +4,25 @@ const router = require("express").Router();
 
 const book = require("./book");
 const books = require("./books");
+const auth = require("./auth");
+const project = require("./project");
+const task = require("./task");
+const user = require("./user");
+const contact = require("./contact");
+const ai = require("./ai");
+const {sendEmail} = require("../src/controllers/emailController");
 
-router.get("/", async function (req, res) {
-  //homepage route returns some HTML
-  res.send(`<h1>Reached home!</h1>
-            <br>
-            <a href='/books'>Books</a>`);
+router.get('/', (req, res) => {
+  res.send('Test endpoint');
 });
 
-router.use("/", book);
-router.use("/", books);
+router.use('/auth/', auth);
+router.use('/project/', project);
+router.use('/task/', task);
+router.use('/user/', user);
+router.use('/contact/', contact);
+router.use('/ai/', ai);
+
+router.post('/email', sendEmail);
 
 module.exports = router;

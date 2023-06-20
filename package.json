@@ -27,7 +27,7 @@
     "jsonwebtoken": "^8.5.1",
     "jspdf": "^2.5.1",
     "launcher": "^0.0.1",
-    "mongoose": "^6.7.2",
+    "mongoose": "^6.11.2",
     "nodemailer": "^6.9.1",
     "nodemailer-express-handlebars": "^6.0.0",
     "openai": "^3.3.0",
