@@ -1,13 +1,12 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-import express from 'express';
 import process from 'process';
 import User from '../model/UserModel';
 import Token from '../model/TokenModel';
 
 const {ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET} = process.env;
 
-const loginUser = async (req: express.Request, res: express.Response) => {
+const loginUser = async (req, res) => {
   const {email, password} = req.body;
   
   if (!email || !password) return res.status(400).json({
@@ -20,10 +19,12 @@ const loginUser = async (req: express.Request, res: express.Response) => {
   const foundUser = await User.findOne({email: email}).exec();
   
   
-  if (!foundUser) return res.status(409).json({ message: {
+  if (!foundUser) return res.status(409).json({
+    message: {
       messageEn: `Incorrect password or email`,
       messageUa: `Пароль чи електронна пошта є неправильними`
-    }});
+    }
+  });
   
   // const validPassword = await bcrypt.compare(password, foundUser.password);
   

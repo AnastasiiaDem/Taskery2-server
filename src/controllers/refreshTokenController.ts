@@ -1,11 +1,10 @@
 const jwt = require('jsonwebtoken');
-import express from 'express';
 import User from '../model/UserModel';
 import Token from '../model/TokenModel';
 
 const {ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET} = process.env;
 
-const refreshToken = async (req: express.Request, res: express.Response) => {
+const refreshToken = async (req, res) => {
   const cookies = req.cookies;
   
   if (!cookies?.token) return res.status(401).json({error: 'error no cookies'});

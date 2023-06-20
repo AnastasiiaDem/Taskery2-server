@@ -1,10 +1,9 @@
 import User from '../model/UserModel';
 import Token from '../model/TokenModel';
-import express from 'express';
 import Task from '../model/TaskModel';
 import mongoose from 'mongoose';
 //додавання завдань в бд
-export const createTask = async (req: express.Request, res: express.Response) => {
+export const createTask = async (req, res) => {
   const {employeeId, projectId, title, description, status, deadline} = req.body;
   const cookies = req.cookies;
   if (!cookies?.token) return res.status(401).json({error: 'error no cookies'});
@@ -35,7 +34,7 @@ export const createTask = async (req: express.Request, res: express.Response) =>
   });
 };
 //оновлення завдань в бд
-export const updateTask = async (req: express.Request, res: express.Response) => {
+export const updateTask = async (req, res) => {
   const id = req.params.id;
   !id && res.status(400).json({error: 'no id'});
   
@@ -67,7 +66,7 @@ export const updateTask = async (req: express.Request, res: express.Response) =>
   }
 };
 //видалення завдань з бд
-export const deleteTask = async (req: express.Request, res: express.Response) => {
+export const deleteTask = async (req, res) => {
   const id = req.params.id;
   !id && res.status(400).json({error: 'no id'});
   
@@ -87,7 +86,7 @@ export const deleteTask = async (req: express.Request, res: express.Response) =>
   }
 };
 //отримання списку усіх завдань з бд
-export const getTasks = async (req: express.Request, res: express.Response) => {
+export const getTasks = async (req, res) => {
   const {title, description, status, deadline} = req.query;
   const cookies = req.cookies;
   if (!cookies?.token) return res.status(401).json({error: 'error no cookies'});

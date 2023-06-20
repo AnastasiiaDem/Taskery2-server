@@ -1,8 +1,7 @@
-import express from 'express';
 import User from '../model/UserModel';
 import Token from '../model/TokenModel';
 
-export const getAllUsers = (req: express.Request, res: express.Response) => {
+export const getAllUsers = (req, res) => {
   User.find({}, function (err: Error, data: any) {
     
     if (data.length === 0 || err) return res.status(400).json({message: 'There is no any user'});
@@ -12,7 +11,7 @@ export const getAllUsers = (req: express.Request, res: express.Response) => {
 };
 
 
-export const getCurrentUser = async (req: express.Request, res: express.Response) => {
+export const getCurrentUser = async (req, res) => {
   const cookies = req.cookies;
   
   if (!cookies?.token) return res.status(401).json({error: 'error no cookies'});
@@ -26,7 +25,7 @@ export const getCurrentUser = async (req: express.Request, res: express.Response
   return res.status(200).json(foundUser);
 };
 
-export const updateUser = async (req: express.Request, res: express.Response) => {
+export const updateUser = async (req, res) => {
   const {
     _id,
     firstName,
@@ -75,7 +74,7 @@ export const updateUser = async (req: express.Request, res: express.Response) =>
   }
 };
 
-export const deleteUser = async (req: express.Request, res: express.Response) => {
+export const deleteUser = async (req, res) => {
   const id = req.params.id;
   
   !id && res.status(400).json({error: 'no id'});

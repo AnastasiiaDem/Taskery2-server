@@ -1,8 +1,7 @@
-import express from 'express';
 import nodemailer from 'nodemailer';
 import User from '../model/UserModel';
 
-export const sendEmail = async (req: express.Request, res: express.Response) => {
+export const sendEmail = async (req, res) => {
   const {userId, project, task, report, content} = req.body;
   
   if (!userId || !project) return res.status(400).json({message: `Incorrect password or email`});

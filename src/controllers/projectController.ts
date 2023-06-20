@@ -1,11 +1,10 @@
 import User from '../model/UserModel';
 import Token from '../model/TokenModel';
-import express from 'express';
 import Project from '../model/ProjectModel';
 import mongoose from 'mongoose';
 import Task from '../model/TaskModel';
 //додавання проєкту в бд
-export const createProject = async (req: express.Request, res: express.Response) => {
+export const createProject = async (req, res) => {
   const {projectName, description, status, assignedUsers, createdAt, updatedAt, budget} = req.body;
   
   const cookies = req.cookies;
@@ -38,7 +37,7 @@ export const createProject = async (req: express.Request, res: express.Response)
   });
 };
 //оновлення проєкту в бд
-export const updateProject = async (req: express.Request, res: express.Response) => {
+export const updateProject = async (req, res) => {
   const id = req.params.id;
   !id && res.status(400).json({error: 'no id'});
   
@@ -72,7 +71,7 @@ export const updateProject = async (req: express.Request, res: express.Response)
   }
 };
 //видалення проєкту з бд
-export const deleteProject = async (req: express.Request, res: express.Response) => {
+export const deleteProject = async (req, res) => {
   const id = req.params.id;
   !id && res.status(400).json({error: 'no id'});
   
@@ -92,7 +91,7 @@ export const deleteProject = async (req: express.Request, res: express.Response)
   }
 };
 //отримання списку усіх проєктів з бд
-export const getProjects = async (req: express.Request, res: express.Response) => {
+export const getProjects = async (req, res) => {
   const cookies = req.cookies;
   if (!cookies?.token) return res.status(401).json({error: 'error no cookies'});
   
@@ -111,7 +110,7 @@ export const getProjects = async (req: express.Request, res: express.Response) =
   }
 };
 //отримання даних поточного проєкту з бд
-export const getCurrentProject = async (req: express.Request, res: express.Response) => {
+export const getCurrentProject = async (req, res) => {
   const id = req.params.id;
   !id && res.status(400).json({error: 'no id'});
   

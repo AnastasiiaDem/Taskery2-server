@@ -1,8 +1,7 @@
-import express from 'express';
 import User from '../model/UserModel';
 import Token from '../model/TokenModel';
 
-const logoutUser = async (req: express.Request, res: express.Response) => {
+const logoutUser = async (req, res) => {
   const cookies = req.cookies;
   
   if (!cookies.token) return res.status(204).json({error: 'No token'});

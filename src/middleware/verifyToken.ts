@@ -2,7 +2,7 @@ import express, {NextFunction} from 'express';
 
 const jwt = require('jsonwebtoken');
 
-const verifyToken = (req: any, res: express.Response, next: NextFunction) => {
+const verifyToken = (req: any, res, next: NextFunction) => {
   const authHeader = req.headers['authorization'];
   
   if (!authHeader) return res.status(401).json({error: 'error'});

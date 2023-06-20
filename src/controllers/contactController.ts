@@ -1,10 +1,8 @@
 import Request from '../model/RequestModel';
-import express from 'express';
 import mongoose from 'mongoose';
-import User from '../model/UserModel';
 import nodemailer from 'nodemailer';
 
-export const sendRequest = async (req: express.Request, res: express.Response) => {
+export const sendRequest = async (req, res) => {
   const {userId, firstName, lastName, email, description} = req.body;
   
   if (!userId || !firstName || !lastName || !email || !description)
@@ -29,7 +27,7 @@ export const sendRequest = async (req: express.Request, res: express.Response) =
   });
 };
 
-export const sendRespond = async (req: express.Request, res: express.Response) => {
+export const sendRespond = async (req, res) => {
   const {firstName, lastName, email, description, respond} = req.body;
   
   
@@ -37,7 +35,7 @@ export const sendRespond = async (req: express.Request, res: express.Response) =
   let subject = '';
   
   subject = 'The Respond To Your Request // Taskery.com';
-
+  
   html = '<style>' +
     '.email-text {display: flex; align-items: flex-start; justify-content: flex-start;flex-direction: column; width: 500px;}' +
     '</style>' +
@@ -86,7 +84,7 @@ export const sendRespond = async (req: express.Request, res: express.Response) =
   });
 };
 
-export const getRequests = async (req: express.Request, res: express.Response) => {
+export const getRequests = async (req, res) => {
   Request.find({}, function (err: Error, data: any) {
     
     if (data.length === 0 || err) return res.status(400).json({message: 'There is no any requests'});
@@ -95,7 +93,7 @@ export const getRequests = async (req: express.Request, res: express.Response) =
   });
 };
 
-export const deleteRequest = async (req: express.Request, res: express.Response) => {
+export const deleteRequest = async (req, res) => {
   const id = req.params.id;
   
   !id && res.status(400).json({error: 'no id'});

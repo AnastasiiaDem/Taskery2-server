@@ -1,11 +1,10 @@
 import User from '../model/UserModel';
 import Token from '../model/TokenModel';
-import express from 'express';
 import mongoose from 'mongoose';
 
 const bcrypt = require('bcryptjs');
 
-const createUser = async (req: express.Request, res: express.Response) => {
+const createUser = async (req, res) => {
   const {firstName, lastName, email, password, role} = req.body;
   
   if (!firstName || !lastName || !email || !password)
