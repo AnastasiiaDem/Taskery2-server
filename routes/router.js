@@ -7,7 +7,7 @@ const books = require("./books");
 
 routes.get("/", async function (req, res) {
   //homepage route returns some HTML
-  res.send(`<h1>Reached home!</h1>
+  res.send(`<h1>Reached home!</h1> 
             <br>
             <a href='/books'>Books</a>`);
 });

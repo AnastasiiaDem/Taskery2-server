@@ -1,6 +1,6 @@
-const app = require("../devServer");
-const routes = require("../routes/router");
+const app = require("../app");
+const route = require("../routes/books");
 
-app.use("/api/", routes);
+app.use("/api/", route);
 
 module.exports = app;
