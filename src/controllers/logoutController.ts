@@ -3,7 +3,8 @@ import User from '../model/UserModel';
 import Token from '../model/TokenModel';
 
 const logoutUser = async (req: express.Request, res: express.Response) => {
-  const cookies = req.cookies['token'];
+  const cookies = req.cookies;
+  
   if (!cookies.token) return res.status(204).json({error: 'No token'});
   
   const refreshToken = cookies.token;
