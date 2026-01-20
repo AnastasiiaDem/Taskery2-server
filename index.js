@@ -1,30 +1,35 @@
-const apiRoutes = require('./routes/router');
-require('dotenv').config();
-const express = require('express');
+const apiRoutes = require("./routes/router");
+require("dotenv").config();
+const express = require("express");
 const app = express();
 
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 
 app.use(cookieParser());
 app.use(express.json());
 
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const PORT = process.env.PORT;
-const {MONGODB_LINK, MONGODB_LOCAL} = process.env;
+const { MONGODB_LINK, MONGODB_LOCAL } = process.env;
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.setHeader('Access-Control-Allow-Origin', 'https://taskery2.vercel.app');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.setHeader('Authorization', `Bearer ${process.env.OPENAI_API_KEY}`);
+  res.setHeader("Access-Control-Allow-Origin", "https://taskery2.vercel.app");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept",
+  );
+  res.setHeader("Authorization", `Bearer ${process.env.OPENAI_API_KEY}`);
   next();
 });
+
+mongoose.set("strictQuery", false);
 
 mongoose
   .connect(MONGODB_LINK, {
@@ -32,12 +37,12 @@ mongoose
   })
   .catch((err) => console.log(err));
 
-mongoose.connection.on('connected', () => console.log('Connected to db'));
+mongoose.connection.on("connected", () => console.log("Connected to db"));
 
 app.listen(PORT, () => {
   console.log(`Server is working on ${PORT} port`);
 });
 
-app.use('/api/', apiRoutes);
+app.use("/api/", apiRoutes);
 
 module.exports = app;
